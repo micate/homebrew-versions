@@ -1,46 +1,73 @@
-class Mongodb26 < Formula
-  desc "High-performance document-oriented database"
-  homepage "https://www.mongodb.org/"
-  url "https://fastdl.mongodb.org/src/mongodb-src-r2.6.12.tar.gz"
-  sha256 "2dd51eabcfcd133573be74c0131c85b67764042833e7d94077e86adc0b9406dc"
+require "language/go"
 
-  bottle do
-    cellar :any_skip_relocation
-    sha256 "235b90185354f6cb9274cbc590471c0d4f27a79303b5754eb2e586582a427bef" => :sierra
-    sha256 "1c92e42c7e6c54e5aec5ed89e65507c7ee173eb2d39734d1122467dc3ecc7a83" => :el_capitan
-    sha256 "c81d5e37dc2cef21b4a65ad67c74270dc6cc99a5987c67190c4e1281ebfd4138" => :yosemite
-  end
+class Mongodb32 < Formula
+  desc "High-performance, schema-free, document-oriented database"
+  homepage "https://www.mongodb.org/"
+  url "https://fastdl.mongodb.org/src/mongodb-src-r3.2.11.tar.gz"
+  sha256 "625eb28fd47b2af63b30343a064de7f42e5265f4c642874ec766ba3643fd80d7"
 
   option "with-boost", "Compile using installed boost, not the version shipped with mongodb"
+  option "with-sasl", "Compile with SASL support"
 
-  depends_on :macos => :snow_leopard
-  depends_on "scons" => :build
   depends_on "boost" => :optional
-  depends_on "openssl" => :optional
+  depends_on "go" => :build
+  depends_on :macos => :mountain_lion
+  depends_on "scons" => :build
+  depends_on "openssl" => :recommended
+
+  go_resource "github.com/mongodb/mongo-tools" do
+    url "https://github.com/mongodb/mongo-tools.git",
+        :tag => "r3.2.11",
+        :revision => "45418a84270bd822db0d6d0c37a0264efb0e86d2",
+        :shallow => false
+  end
+
+  needs :cxx11
 
   def install
-    # This modifies the SConstruct file to include 10.10, 10.11, and 10.12 osx versions as accepted build options.
-    inreplace "SConstruct", /osx_version_choices = \[.+?\]/, "osx_version_choices = ['10.6', '10.7', '10.8', '10.9', '10.10', '10.11', '10.12']"
+    ENV.cxx11 if MacOS.version < :mavericks
+    ENV.libcxx if build.devel?
+
+    # New Go tools have their own build script but the server scons "install" target is still
+    # responsible for installing them.
+    Language::Go.stage_deps resources, buildpath/"src"
+
+    cd "src/github.com/mongodb/mongo-tools" do
+      args = %w[]
+
+      if build.with? "openssl"
+        args << "ssl"
+        ENV["LIBRARY_PATH"] = Formula["openssl"].opt_lib
+        ENV["CPATH"] = Formula["openssl"].opt_include
+      end
+
+      args << "sasl" if build.with? "sasl"
+
+      system "./build.sh", *args
+    end
+
+    mkdir "src/mongo-tools"
+    cp Dir["src/github.com/mongodb/mongo-tools/bin/*"], "src/mongo-tools/"
 
     args = %W[
       --prefix=#{prefix}
       -j#{ENV.make_jobs}
-      --cc=#{ENV.cc}
-      --cxx=#{ENV.cxx}
       --osx-version-min=#{MacOS.version}
-      --full
     ]
 
-    args << "--use-system-boost" if build.with? "boost"
-    args << "--64" if MacOS.prefer_64_bit?
+    args << "CC=#{ENV.cc}"
+    args << "CXX=#{ENV.cxx}"
 
-    # Pass the --disable-warnings-as-errors flag to Scons when on Yosemite
-    # or later, otherwise 2.6.x won't build from source due to a Clang 3.5+
-    # error - https://github.com/mongodb/mongo/pull/956#issuecomment-94545753
+    args << "--use-sasl-client" if build.with? "sasl"
+    args << "--use-system-boost" if build.with? "boost"
+    args << "--use-new-tools"
     args << "--disable-warnings-as-errors" if MacOS.version >= :yosemite
 
     if build.with? "openssl"
-      args << "--ssl" << "--extrapath=#{Formula["openssl"].opt_prefix}"
+      args << "--ssl"
+
+      args << "CCFLAGS=-I#{Formula["openssl"].opt_include}"
+      args << "LINKFLAGS=-L#{Formula["openssl"].opt_lib}"
     end
 
     scons "install", *args
@@ -48,8 +75,8 @@ class Mongodb26 < Formula
     (buildpath+"mongod.conf").write mongodb_conf
     etc.install "mongod.conf"
 
-    (var/"mongodb").mkpath
-    (var/"log/mongodb").mkpath
+    (var+"mongodb").mkpath
+    (var+"log/mongodb").mkpath
   end
 
   def mongodb_conf; <<-EOS.undent
@@ -92,12 +119,12 @@ class Mongodb26 < Formula
       <key>HardResourceLimits</key>
       <dict>
         <key>NumberOfFiles</key>
-        <integer>1024</integer>
+        <integer>4096</integer>
       </dict>
       <key>SoftResourceLimits</key>
       <dict>
         <key>NumberOfFiles</key>
-        <integer>1024</integer>
+        <integer>4096</integer>
       </dict>
     </dict>
     </plist>

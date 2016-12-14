@@ -4,6 +4,13 @@ class KubernetesCli14 < Formula
   url "https://github.com/kubernetes/kubernetes/archive/v1.4.7.tar.gz"
   sha256 "2f5d4c5071109935386c550899ae85f338ee3a9d58cb1908d2d975d8a9c5baa9"
 
+  bottle do
+    cellar :any_skip_relocation
+    sha256 "08b4eb3a37a78df4ff80ee01da5273e9a252f162f5241c98bf137846bb55e858" => :sierra
+    sha256 "57b844472dbeae8b7c6853197e6a886e4ebd6bdb3449854dc292e348f2cbfeb1" => :el_capitan
+    sha256 "788d21907e3f7f3c82b2aa4db74d6a794e878d7f37a589d95c135a643a2b59fa" => :yosemite
+  end
+
   depends_on "go" => :build
 
   conflicts_with "kubernetes-cli", :because => "Differing versions of the same formula"

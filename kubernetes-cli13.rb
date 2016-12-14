@@ -8,6 +8,13 @@ class KubernetesCli13 < Formula
 
   conflicts_with "kubernetes-cli", :because => "Differing versions of the same formula"
 
+  bottle do
+    cellar :any_skip_relocation
+    sha256 "362e73f18c3182c7fff76ed2311616587b8d93d7cf44e09b621847492edff435" => :sierra
+    sha256 "d77c7e8b279fee7add1478bf27d91e77ddc43ce7abd06c702b98cad764b60948" => :el_capitan
+    sha256 "16958fe90b5d3ead46e38243ed112176b1f42e03d309519cb86e786068296408" => :yosemite
+  end
+
   def install
     if build.stable?
       system "make", "all", "WHAT=cmd/kubectl", "GOFLAGS=-v"

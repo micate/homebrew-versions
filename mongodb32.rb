@@ -6,6 +6,12 @@ class Mongodb32 < Formula
   url "https://fastdl.mongodb.org/src/mongodb-src-r3.2.11.tar.gz"
   sha256 "625eb28fd47b2af63b30343a064de7f42e5265f4c642874ec766ba3643fd80d7"
 
+  bottle do
+    sha256 "b02bfb76d329293aa31d333c9b5107878e7c31f1554ee876a2cb68821a4c4637" => :sierra
+    sha256 "5beeeb23342fbfa18d0acd25cb3419eeb0a97f2e11d85c0079358506fd1a1f7f" => :el_capitan
+    sha256 "10e1af9682f6e8d27113698f6bc7ca370cb8d5a48e9b7653751d183c3b696835" => :yosemite
+  end
+
   option "with-boost", "Compile using installed boost, not the version shipped with mongodb"
   option "with-sasl", "Compile with SASL support"
 

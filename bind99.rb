@@ -16,10 +16,6 @@ class Bind99 < Formula
   conflicts_with "bind", :because => "Differing versions of the same formula"
 
   def install
-    ENV.libxml2
-    # libxml2 appends one inc dir to CPPFLAGS but bind ignores CPPFLAGS
-    ENV.append "CFLAGS", ENV.cppflags
-
     system "./configure", "--prefix=#{prefix}",
                           "--enable-threads",
                           "--enable-ipv6",

@@ -11,11 +11,6 @@ class Gawk3 < Formula
     sha256 "88861130d66e15afafc9627fb065ab4b7b45e599bb02dd50c67aa2592da67cd0" => :mountain_lion
   end
 
-  fails_with :llvm do
-    build 2326
-    cause "Undefined symbols when linking"
-  end
-
   def install
     system "./configure", "--prefix=#{prefix}", "--disable-dependency-tracking"
     system "make"

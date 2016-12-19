@@ -67,7 +67,7 @@ class Thrift090 < Formula
                           "--prefix=#{prefix}",
                           "--libdir=#{lib}",
                           *args
-    ENV.j1
+    ENV.deparallelize
     system "make", "install"
   end
 

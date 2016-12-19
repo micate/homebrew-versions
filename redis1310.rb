@@ -4,11 +4,6 @@ class Redis1310 < Formula
   url "https://github.com/antirez/redis/archive/v1.3.10.tar.gz"
   sha256 "07d5b365527ff6fcd74d896a653d65a28ae95aac77cb0ecbe936f106f01f53f0"
 
-  fails_with :llvm do
-    build 2334
-    cause 'Fails with "reference out of range from _linenoise"'
-  end
-
   def install
     # Architecture isn't detected correctly on 32bit Snow Leopard without help
     ENV["OBJARCH"] = MacOS.prefer_64_bit? ? "-arch x86_64" : "-arch i386"

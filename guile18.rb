@@ -20,11 +20,6 @@ class Guile18 < Formula
   depends_on "gmp"
   depends_on "readline"
 
-  fails_with :llvm do
-    build 2336
-    cause "Segfaults during compilation"
-  end
-
   def install
     system "./configure", "--disable-dependency-tracking",
                           "--prefix=#{prefix}",

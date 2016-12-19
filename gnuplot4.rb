@@ -80,7 +80,7 @@ class Gnuplot4 < Formula
     args << "--without-tutorial"
 
     system "./configure", *args
-    ENV.j1 # or else emacs tries to edit the same file with two threads
+    ENV.deparallelize # or else emacs tries to edit the same file with two threads
     system "make"
     system "make", "check" if build.with? "test"
     system "make", "install"

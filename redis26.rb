@@ -11,11 +11,6 @@ class Redis26 < Formula
     sha256 "4d936a5010e9b50f1c9c347192f11e0b8e365a1948455f6b27415d1a28e35b50" => :mountain_lion
   end
 
-  fails_with :llvm do
-    build 2334
-    cause "Fails with 'reference out of range from _linenoise'"
-  end
-
   conflicts_with "redis",
                  :because => "Differing version of Homebrew/homebrew Redis"
 

@@ -17,13 +17,6 @@ class Povray36 < Formula
   conflicts_with "libpng",
     :because => "causes fatal build error. You can and should `brew link libpng` again after installation"
 
-  if MacOS.version == :leopard
-    fails_with :llvm do
-      build 2326
-      cause "povray fails with 'terminate called after throwing an instance of int'"
-    end
-  end
-
   # povray has issues determining libpng version; can't get it to compile
   # against system libpng, but it works with its internal libpng.
   patch :p0 do

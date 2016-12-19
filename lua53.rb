@@ -12,11 +12,6 @@ class Lua53 < Formula
     sha256 "8f10da97b1335139ac0632b6c4ac83079e36fb20b1e8d39290598bdbb57739c7" => :yosemite
   end
 
-  fails_with :llvm do
-    build 2326
-    cause "Lua itself compiles with LLVM, but may fail when other software tries to link."
-  end
-
   option :universal
   option "with-default-names", "Don't version-suffix the Lua installation. Conflicts with Homebrew's Lua"
   option "without-luarocks", "Don't build with Luarocks support embedded"

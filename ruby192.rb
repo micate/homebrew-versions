@@ -20,10 +20,6 @@ class Ruby192 < Formula
   option "with-suffix", 'Suffix commands with "192"'
   option "with-doc", "Install documentation"
 
-  fails_with :llvm do
-    build 2326
-  end
-
   def install
     args = %W[--prefix=#{prefix} --enable-shared]
 

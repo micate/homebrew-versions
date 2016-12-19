@@ -36,8 +36,6 @@ class ErlangR19 < Formula
     sha256 "b6f7c4e964673333f6c3eea8530dd988b41339b8912ae293f6f1b429489159ff"
   end
 
-  fails_with :llvm
-
   def install
     # Unset these so that building wx, kernel, compiler and
     # other modules doesn't fail with an unintelligable error.

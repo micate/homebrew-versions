@@ -29,9 +29,6 @@ class Gegl02 < Formula
   keg_only "Older version of core gegl"
 
   def install
-    # ./configure breaks when optimization is enabled with llvm
-    ENV.no_optimization if ENV.compiler == :llvm
-
     args = %W[
       --disable-debug
       --disable-dependency-tracking

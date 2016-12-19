@@ -20,10 +20,6 @@ class Protobuf250 < Formula
 
   conflicts_with "protobuf", :because => "conflicts with protobuf in main repository."
 
-  fails_with :llvm do
-    build 2334
-  end
-
   def install
     # Don't build in debug mode. See:
     # https://github.com/Homebrew/homebrew/issues/9279

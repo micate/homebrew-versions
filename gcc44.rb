@@ -55,8 +55,6 @@ class Gcc44 < Formula
     sha256 "9c5f6fd30d089e97e0364af322272bb06f3d107f357d2b621503ebfbbb4a5af7"
   end
 
-  fails_with :llvm
-
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   def pour_bottle?

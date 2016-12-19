@@ -64,8 +64,6 @@ class Gcc47 < Formula
   depends_on "cloog-ppl015"
   depends_on "ecj" if build.with?("java") || build.with?("all-languages")
 
-  fails_with :llvm
-
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.
   def pour_bottle?

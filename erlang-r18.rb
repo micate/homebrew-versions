@@ -86,7 +86,7 @@ class ErlangR18 < Formula
 
     system "./configure", *args
     system "make"
-    ENV.j1 # Install is not thread-safe; can try to create folder twice and fail
+    ENV.deparallelize # Install is not thread-safe; can try to create folder twice and fail
     system "make", "install"
 
     if build.with? "docs"

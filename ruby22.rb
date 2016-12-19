@@ -27,10 +27,6 @@ class Ruby22 < Formula
   depends_on "openssl"
   depends_on :x11 if build.with? "tcltk"
 
-  fails_with :llvm do
-    build 2326
-  end
-
   def install
     args = %W[
       --prefix=#{prefix}

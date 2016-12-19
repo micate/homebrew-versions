@@ -32,11 +32,6 @@ class PerconaServer56 < Formula
   conflicts_with "mariadb-connector-c",
     :because => "both install plugins"
 
-  fails_with :llvm do
-    build 2334
-    cause "https://github.com/Homebrew/homebrew/issues/issue/144"
-  end
-
   # Where the database files should be located. Existing installs have them
   # under var/percona, but going forward they will be under var/mysql to be
   # shared with the mysql and mariadb formulae.

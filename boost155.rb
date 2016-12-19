@@ -105,11 +105,6 @@ class Boost155 < Formula
     end
   end
 
-  fails_with :llvm do
-    build 2335
-    cause "Dropped arguments to functions when linking with boost"
-  end
-
   def install
     # https://svn.boost.org/trac/boost/ticket/8841
     if build.with?("mpi") && build.with?("single")
@@ -175,7 +170,7 @@ class Boost155 < Formula
 
     # Boost.Log cannot be built using Apple GCC at the moment. Disabled
     # on such systems.
-    without_libraries << "log" if ENV.compiler == :gcc || ENV.compiler == :llvm
+    without_libraries << "log" if ENV.compiler == :gcc
     without_libraries << "python" if build.without?("python") \
                                       && build.without?("python3")
     without_libraries << "mpi" if build.without? "mpi"

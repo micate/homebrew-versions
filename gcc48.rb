@@ -75,7 +75,6 @@ class Gcc48 < Formula
   depends_on "cctools" => :build if MacOS.version < :leopard
 
   fails_with :gcc_4_0
-  fails_with :llvm
 
   # The bottles are built on systems with the CLT installed, and do not work
   # out of the box on Xcode-only systems due to an incorrect sysroot.

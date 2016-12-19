@@ -21,7 +21,7 @@ class Unison232 < Formula
   patch :DATA
 
   def install
-    ENV.j1
+    ENV.deparallelize
     ENV.delete "CFLAGS" # ocamlopt reads CFLAGS but doesn't understand common options
     system "make", "./mkProjectInfo"
     system "make", "UISTYLE=text"

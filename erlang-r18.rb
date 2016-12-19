@@ -27,8 +27,6 @@ class ErlangR18 < Formula
 
   conflicts_with "erlang", :because => "Different version of same formula"
 
-  fails_with :llvm
-
   resource "man" do
     url "https://www.erlang.org/download/otp_doc_man_18.3.tar.gz"
     sha256 "978be100e9016874921b3ad1a65ee46b7b6a1e597b8db2ec4b5ef436d4c9ecc2"

@@ -49,8 +49,8 @@ class Lua53 < Formula
     if build.without? "default-names"
       mv "#{bin}/lua", "#{bin}/lua-5.3"
       mv "#{bin}/luac", "#{bin}/luac-5.3"
-      mv "#{man1}/lua.1", "#{man1}/lua-5.3.3"
-      mv "#{man1}/luac.1", "#{man1}/luac-5.3.3"
+      mv "#{man1}/lua.1", "#{man1}/lua-5.3.1"
+      mv "#{man1}/luac.1", "#{man1}/luac-5.3.1"
       mv "#{lib}/pkgconfig/lua.pc", "#{lib}/pkgconfig/lua5.3.pc"
 
       bin.install_symlink "lua-5.3" => "lua5.3"

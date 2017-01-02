@@ -13,6 +13,8 @@
   "isl012": "homebrew/core",
   "isl014": "homebrew/core",
   "libmpc08": "homebrew/core",
+  "llvm37": "homebrew/core",
+  "llvm38": "homebrew/core",
   "mysql55": "homebrew/core",
   "mysql56": "homebrew/core",
   "node010": "homebrew/core",

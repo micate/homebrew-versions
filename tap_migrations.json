@@ -1,4 +1,13 @@
 {
+  "ansible19": "homebrew/core",
+  "ansible20": "homebrew/core",
+  "antlr2": "homebrew/core",
+  "antlr3": "homebrew/core",
+  "apache-spark15": "homebrew/core",
+  "apache-spark16": "homebrew/core",
+  "autoconf213": "homebrew/core",
+  "autoconf264": "homebrew/core",
+  "automake112": "homebrew/core",
   "cloog018": "homebrew/core",
   "coq83": "homebrew/boneyard",
   "elasticsearch17": "homebrew/core",

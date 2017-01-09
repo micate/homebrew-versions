@@ -1,9 +1,9 @@
 class Gnupg21 < Formula
   desc "GNU Privacy Guard: a free PGP replacement"
   homepage "https://www.gnupg.org/"
-  url "https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.16.tar.bz2"
-  mirror "https://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.16.tar.bz2"
-  sha256 "49b9a6a6787ad00d4d2d69d8c7ee8905923782583f06078a064a0c80531d8844"
+  url "https://gnupg.org/ftp/gcrypt/gnupg/gnupg-2.1.17.tar.bz2"
+  mirror "https://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/gnupg/gnupg-2.1.17.tar.bz2"
+  sha256 "c5dc54db432209fa8f9bdb071c8fb60a765ff28e363150e30bdd4543160243cb"
 
   bottle do
     sha256 "2c6f9b5bb9984149146c46ce6cad4691a20228725dd8732491aaf0f3aa254a13" => :sierra

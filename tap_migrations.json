@@ -28,6 +28,7 @@
   "libmpc08": "homebrew/core",
   "llvm37": "homebrew/core",
   "llvm38": "homebrew/core",
+  "lua53": "homebrew/core",
   "mpfr2": "homebrew/core",
   "mysql55": "homebrew/core",
   "mysql56": "homebrew/core",

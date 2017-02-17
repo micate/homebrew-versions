@@ -7,9 +7,9 @@ class Gnupg21 < Formula
   revision 1
 
   bottle do
-    sha256 "92a72f415dfb309f8d8c432990b720c64d21529c8343105b35b7aeb538b94883" => :sierra
-    sha256 "f4b7478d161580ab5e5c3cf0c5afa1d777e781625db13af2c0b12a1974058ce8" => :el_capitan
-    sha256 "ec7db844d1ce34374b0217464f85ef41348174324c288a64ba394c759c002c6f" => :yosemite
+    sha256 "1fda666df6abaf92e72ae74b06f18d1630857f882700867997af48613c8b036f" => :sierra
+    sha256 "99d6bd60da26539a2b74146f5acda4f6d989ab9142a6146b95144d80bdb669bc" => :el_capitan
+    sha256 "2321ce7e53dda227f74e6ce8391b1fb915f884b33b4b4f6a77086d8ea6fa2405" => :yosemite
   end
 
   option "with-gpgsplit", "Additionally install the gpgsplit utility"

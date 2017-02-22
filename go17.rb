@@ -17,9 +17,9 @@ class Go17 < Formula
   option "without-race", "Build without race detector"
 
   depends_on :macos => :mountain_lion
-  
+
   conflicts_with "go", :because => "Differing versions of the same formula"
-  
+
   go_version = version.to_s.split(".")[0..1].join(".")
   resource "gotools" do
     url "https://go.googlesource.com/tools.git",
